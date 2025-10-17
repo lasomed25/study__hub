@@ -1,210 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Study Hub</title>
-<style>
-  body {
-    font-family: "Segoe UI", sans-serif;
-    margin: 0;
-    background: #ffffff;
-    color: #000;
-    transition: background 0.3s, color 0.3s;
-  }
-  header {
-    background: #007bff;
-    color: white;
-    padding: 12px 18px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  h1 {
-    margin: 0;
-    font-size: 20px;
-  }
-  .menu {
-    position: relative;
-  }
-  .menu button {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-  }
-  .menu-list {
-    display: none;
-    position: absolute;
-    right: 0;
-    top: 35px;
-    background: white;
-    color: black;
-    border-radius: 10px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    min-width: 160px;
-  }
-  .menu-list a, .menu-list button {
-    display: block;
-    width: 100%;
-    text-align: left;
-    border: none;
-    background: none;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    color: black;
-  }
-  .menu-list a:hover, .menu-list button:hover {
-    background: #f0f0f0;
-  }
-  .menu.show .menu-list {
-    display: block;
-  }
-  main {
-    text-align: center;
-    padding: 40px 15px;
-  }
-  section {
-    display: none;
-    max-width: 600px;
-    margin: 20px auto;
-    text-align: left;
-  }
-  section.active {
-    display: block;
-  }
-  input, textarea {
-    width: 100%;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    margin-top: 8px;
-  }
-  button.calc-btn {
-    width: 60px;
-    height: 60px;
-    font-size: 18px;
-    border: none;
-    border-radius: 10px;
-    margin: 5px;
-    background: #007bff;
-    color: white;
-    cursor: pointer;
-  }
-  button.calc-btn:hover {
-    opacity: 0.9;
-  }
-  #result {
-    width: 100%;
-    height: 60px;
-    font-size: 22px;
-    text-align: right;
-    padding: 10px;
-    border-radius: 10px;
-    border: 2px solid #007bff;
-    margin-bottom: 10px;
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Study Hub</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      color: #222;
+      margin: 0;
+      padding: 0;
+      transition: background 0.3s, color 0.3s;
+    }
+    header {
+      background: #0078d7;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    .container {
+      padding: 2rem;
+      text-align: center;
+    }
+    .btn {
+      display: inline-block;
+      margin: 1rem;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      background-color: #0078d7;
+      color: white;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      background-color: #005fa3;
+    }
+    .floating-instagram {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #e4405f;
+      color: white;
+      border-radius: 50%;
+      width: 55px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      text-decoration: none;
+      font-size: 24px;
+      z-index: 1000;
+      transition: transform 0.3s;
+    }
+    .floating-instagram:hover {
+      transform: scale(1.1);
+    }
+    .dark-mode {
+      background-color: #1a1a1a;
+      color: #eee;
+    }
+    .theme-btn {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #0078d7;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 45px;
+      height: 45px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 3px 5px rgba(0, 0, 0, 0.3);
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>📘 Study Hub</h1>
-    <div class="menu">
-      <button id="menuBtn">⋮</button>
-      <div class="menu-list">
-        <button onclick="showSection('calc')">🧮 Calculator</button>
-        <button onclick="showSection('chat')">💬 Chat</button>
-        <button onclick="showSection('feedback')">📝 Feedback</button>
-        <button onclick="showSection('contact')">📧 Contact</button>
-        <button onclick="toggleMode()">🌗 Change Mode</button>
-      </div>
-    </div>
-  </header>
+  <header>Welcome to Study Hub</header>
 
-  <main>
-    <h2 id="welcome">Welcome to Study Hub</h2>
+  <div class="container">
+    <p>Boost your learning with tools, calculators, and chat!</p>
+    <button class="btn">Open Calculator</button>
+    <button class="btn">Chat</button>
+    <button class="btn">Feedback</button>
+    <button class="btn">Contact</button>
+  </div>
 
-    <!-- Calculator -->
-    <section id="calc">
-      <h2>Calculator</h2>
-      <input type="text" id="result" readonly>
-      <div id="buttons"></div>
-    </section>
+  <a href="https://instagram.com/Las_omed11" target="_blank" class="floating-instagram" title="Follow me on Instagram">
+    📸
+  </a>
 
-    <!-- Chat -->
-    <section id="chat">
-      <h2>Chat</h2>
-      <p>This is where the chat will appear (embed or future integration).</p>
-      <iframe src="https://chatango.com" style="width:100%;height:300px;border:none;border-radius:10px;"></iframe>
-    </section>
-
-    <!-- Feedback -->
-    <section id="feedback">
-      <h2>Feedback</h2>
-      <textarea placeholder="Write your feedback..."></textarea>
-      <button onclick="alert('Feedback submitted!')">Send</button>
-    </section>
-
-    <!-- Contact -->
-    <section id="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:">Click to send email</a></p>
-      <p>Instagram: <a href="#">@Las_omed11</a></p>
-    </section>
-  </main>
+  <button class="theme-btn" onclick="toggleTheme()">🌓</button>
 
   <script>
-    const menu = document.querySelector('.menu');
-    document.getElementById('menuBtn').onclick = () => menu.classList.toggle('show');
-
-    function showSection(id) {
-      document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-      document.getElementById('welcome').style.display = 'none';
-      menu.classList.remove('show');
-    }
-
-    // Calculator
-    const buttonsDiv = document.getElementById('buttons');
-    const result = document.getElementById('result');
-    const keys = [
-      '7','8','9','/','4','5','6','*','1','2','3','-','0','.','=','+','C'
-    ];
-    keys.forEach(key => {
-      const btn = document.createElement('button');
-      btn.className = 'calc-btn';
-      btn.textContent = key;
-      btn.onclick = () => {
-        if (key === '=') {
-          try { result.value = eval(result.value); } catch { result.value = 'Error'; }
-        } else if (key === 'C') {
-          result.value = '';
-        } else {
-          result.value += key;
-        }
-      };
-      buttonsDiv.appendChild(btn);
-    });
-
-    // Mode toggle
-    let mode = 0;
-    function toggleMode() {
-      mode = (mode + 1) % 3;
-      if (mode === 0) {
-        document.body.style.background = '#ffffff';
-        document.body.style.color = '#000';
-        document.querySelector('header').style.background = '#007bff';
-      } else if (mode === 1) {
-        document.body.style.background = '#121212';
-        document.body.style.color = '#fff';
-        document.querySelector('header').style.background = '#333';
-      } else {
-        document.body.style.background = 'rgba(0,0,255,0.1)';
-        document.body.style.color = '#000';
-        document.querySelector('header').style.background = '#0044cc';
-      }
+    function toggleTheme() {
+      document.body.classList.toggle('dark-mode');
     }
   </script>
 </body>
